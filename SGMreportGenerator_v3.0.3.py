@@ -108,78 +108,98 @@ def get_PatientInfo_fromPyfile(selected_folder, self):
     # List all files in the directory
     py_patient_directory = selected_folder + '/**/*.py*'
     python_files = []
+
+    # initialize variables
+    fne = ['Patient Name']
+    pid = ['1234567']
+    dte = [date.today().strftime('%m-%d-%Y')]
+    brt = [brace_select[0]]
+    wat = [walkaid_select[0]]
+    age = 1
     
     # collect files and creation times
-    for file in glob.glob(py_patient_directory, recursive=True):
-        pyfilename = os.path.basename(file)
-        if pyfilename.endswith('.py') and pyfilename.startswith('Static'):
-            py_filename = file.replace('/','\\')
-            creation_time = os.path.getctime(file)
-            python_files.append((py_filename, creation_time))
-            
-    # sort by creation time - most recent first
-    python_files.sort(key=lambda x: x[1], reverse=True)
+    try:
+        for file in glob.glob(py_patient_directory, recursive=True):
+            pyfilename = os.path.basename(file)
     
-    sorted_python_files = [file[0] for file in python_files]
+            if pyfilename.endswith('.py') and pyfilename.startswith('Static'):
+                py_filename = file.replace('/','\\')
+                creation_time = os.path.getctime(file)
+                python_files.append((py_filename, creation_time))
         
-    # If a Python file is found, open and read it
-    if sorted_python_files:
-        try:
-            # for StaticDataFileName in sorted_python_files:
-            # pull first - most recent - static filename
-            StaticDataFileName = sorted_python_files[0]
-            print(f'Patient data pulled from {os.path.basename(StaticDataFileName)} static file')
-            
-            # open python file
-            exec(open(StaticDataFileName).read())
-            
-            # try to extract variables that should exist in the file
-            ################## patient name and id
-            first_name = self.valueFirstName
-            last_name = self.valueLastName
-            pid = [self.valuePatientNumber]
-            fne = [first_name + " " + last_name]
-            
-            ################## brace trial modifier
-            brt = [self.valueTrialModifier]
-            if brt == 'Barefoot':
-                brt = 'None'
-            
-            ################## date of data collection
-            collect_day = self.valueDataCollectionDate_Day
-            collect_mon = self.valueDataCollectionDate_Month
-            collect_yer = self.valueDataCollectionDate_Year
-            
-            # combine into date string mo-day-year
-            dte = [f'{collect_mon}-{collect_day}-{collect_yer}']
-            
-            ################## patient walk aide used
-            wat = [self.valueAssistiveDevice]
-            
-            ################## patient age at time of collection
-            patient_day = self.valueDateOfBirth_Day
-            patient_month = self.valueDateOfBirth_Month
-            patient_year = self.valueDateOfBirth_Year
-            
-            # Combine strings into a date
-            birth_date_str = f"{patient_year}-{patient_month}-{patient_day}"
-            birth_date = date.strptime(birth_date_str, "%Y-%b-%d")
-            
-            # Format the datetime object to the desired format
-            date.strptime
-            current_date =  date.today()
-            age = current_date.year - birth_date.year - ((current_date.month, current_date.day) < (birth_date.month, birth_date.day))
-            print(f'Patient age is: {age}')
-            return pid, fne, brt, dte, wat, age
-        except:
-            fne = ['Patient Name']
-            pid = ['1234567']
-            dte = [date.today().strftime('%m-%d-%Y')]
-            brt = [brace_select[0]]
-            wat = [walkaid_select[0]]
-            age = 1
-            print('Static python file not found or could not be accessed. Defualt values used for patient information')
-            return pid, fne, brt, dte, wat, age
+        
+        # sort by creation time - most recent first
+        python_files.sort(key=lambda x: x[1], reverse=True)
+        
+        sorted_python_files = [file[0] for file in python_files]
+        
+        # If a Python file is found, open and read it
+        if sorted_python_files:
+            try:
+                # for StaticDataFileName in sorted_python_files:
+                # pull first - most recent - static filename
+                StaticDataFileName = sorted_python_files[0]
+                print(f'Patient data pulled from {os.path.basename(StaticDataFileName)} static file')
+                
+                # open python file
+                exec(open(StaticDataFileName).read())
+                
+                # try to extract variables that should exist in the file
+                ################## patient name and id
+                first_name = self.valueFirstName
+                last_name = self.valueLastName
+                pid = [self.valuePatientNumber]
+                fne = [first_name + " " + last_name]
+                
+                ################## brace trial modifier
+                brt = [self.valueTrialModifier]
+                if brt == 'Barefoot':
+                    brt = 'None'
+                
+                ################## date of data collection
+                collect_day = self.valueDataCollectionDate_Day
+                collect_mon = self.valueDataCollectionDate_Month
+                collect_yer = self.valueDataCollectionDate_Year
+                
+                # combine into date string mo-day-year
+                dte = [f'{collect_mon}-{collect_day}-{collect_yer}']
+                
+                ################## patient walk aide used
+                wat = [self.valueAssistiveDevice]
+                
+                ################## patient age at time of collection
+                patient_day = self.valueDateOfBirth_Day
+                patient_month = self.valueDateOfBirth_Month
+                patient_year = self.valueDateOfBirth_Year
+                
+                # Combine strings into a date
+                birth_date_str = f"{patient_year}-{patient_month}-{patient_day}"
+                birth_date = date.strptime(birth_date_str, "%Y-%b-%d")
+                
+                # Format the datetime object to the desired format
+                date.strptime
+                current_date =  date.today()
+                age = current_date.year - birth_date.year - ((current_date.month, current_date.day) < (birth_date.month, birth_date.day))
+                print(f'Patient age is: {age}')
+                # return pid, fne, brt, dte, wat, age
+            except:
+                # fne = ['Patient Name']
+                # pid = ['1234567']
+                # dte = [date.today().strftime('%m-%d-%Y')]
+                # brt = [brace_select[0]]
+                # wat = [walkaid_select[0]]
+                # age = 1
+                print('Static python file not found or could not be accessed. Defualt values used for patient information')
+                # return pid, fne, brt, dte, wat, age
+    except:
+        # fne = ['Patient Name']
+        # pid = ['1234567']
+        # dte = [date.today().strftime('%m-%d-%Y')]
+        # brt = [brace_select[0]]
+        # wat = [walkaid_select[0]]
+        # age = 1
+        print('Static python file not found or could not be accessed. Defualt values used for patient information')
+    return pid, fne, brt, dte, wat, age
 
 class PatientStudyInfo_Page(tk.Frame):
 
