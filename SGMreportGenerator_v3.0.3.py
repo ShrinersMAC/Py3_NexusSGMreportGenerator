@@ -927,7 +927,7 @@ def plot_Data(self, plot_type, page_settings, is_EMG):
                             plt.gcf().text(plotxy[0][0]-0.03, y_bot - 0.001, lowerstr, fontsize=sf-2, color='k')
                             
                         # find knee varus valgus range and flag if 10 degrees or greater
-                        if gcdNum_selected <= 2:
+                        if gcdNum_selected <= 2 and 'Kinematics' in plot_type:
                             if 'KneeFlexExt' in data_label:
                                 knee_curve = data_dict[limb_spec[Lnum] + data_label]
                                 kf_max = knee_curve.index(max(knee_curve))
