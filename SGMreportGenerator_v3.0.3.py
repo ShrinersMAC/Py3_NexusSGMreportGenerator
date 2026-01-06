@@ -57,7 +57,7 @@ brace_select        = ["Barefoot","B AFO-PLS","L AFO-PLS","R AFO-PLS",
                         "L LIFT","R LIFT","B SMO","L SMO","R SMO",
                         "B UCBL","L UCBL","R UCBL",
                         "KAFO","HKAFO","RGO","Parawalker","Shoes Only","Other", "Shod"]
-walkaid_select      = ['None','Posterior', 'Anterior','Canes','Crutches','Other']
+walkaid_select      = ['None','Posterior', 'Anterior','Canes','Crutches','Walker - Wheeled','Other']
 vstused_select      = ['no KAD','no KAD Dypstick','Foot Model no KAD',
                        'Foot Model no KAD w/FootNotFlat','Foot Model Dypstick no KAD',
                        'KAD','KAD Dypstick','Foot Model with KAD',
