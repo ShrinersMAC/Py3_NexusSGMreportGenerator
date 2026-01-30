@@ -1381,10 +1381,28 @@ def plot_EMG(self):
                 yupper = upper_limits[idx]
                 ylower = lower_limits[idx]
                 y_range = yupper - ylower
-                # EMG on-off bars
-                ax.hlines(ylower + 0.05*y_range, xmin=0, xmax=0.15*datLen, ls='-', color='k', linewidth=2)
-                ax.hlines(ylower + 0.05*y_range, xmin=0.55*datLen, xmax=0.7*datLen, ls='-', color='k', linewidth=2)
-                ax.hlines(ylower + 0.05*y_range, xmin=0.95*datLen, xmax=datLen, ls='-', color='k', linewidth=2)
+                
+                # EMG on-off bars from class 
+                if varLR.get() == 0:  # example: walking condition, change if needed
+                    bar_start_list = page_settings.EMGOnOffBarStart
+                    bar_end_list = page_settings.EMGOnOffBarEnd
+                else:
+                    bar_start_list = page_settings.RunEMGOnOffBarStart
+                    bar_end_list = page_settings.RunEMGOnOffBarEnd
+                
+                start_vals = bar_start_list[idx]
+                end_vals = bar_end_list[idx]
+                
+                for s, e in zip(start_vals, end_vals):
+                    if s > 0 or e > 0:  # skip zero placeholders
+                        ax.hlines(
+                            y = ylower + 0.05*y_range,
+                            xmin = s/100 * datLen,
+                            xmax = e/100 * datLen,
+                            color='k',
+                            linewidth=2
+                            )
+
                 ax.set_ylim([ylower, yupper])
                 ax.set_title(limb_spec[Lnum] + f' {titles[idx]} (raw)')
                 ax.set_xlim([0,datLen])
