@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 Created on Mon Sep 11 16:11:41 2023
-#test JFG
+
 @author: Dan Gregory
 daniel.gregory@shrinenet.org
 '''
