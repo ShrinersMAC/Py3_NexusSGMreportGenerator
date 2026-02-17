@@ -50,21 +50,23 @@ FaceColAlpha        = 0.1
 ### ----------------------- Initialize selections -----------------------------
 
 # Combobox selections
-Dx_select           = ['Gait Abnormality','Cerebral Palsy','Idiopathic Toe Walking',
-                       'Club Foot','Sports','Other','Neuro','Ortho']
-visit_select        = ['Eval','Pre-Op','Post-Op','RTS','Long-Term','Research',
+Dx_select           = ['Gait Abnormality', 'Cerebral Palsy', 'Idiopathic Toe Walking',
+                       'Club Foot', 'Sports', 'Other', 'Neuro', 'Ortho']
+visit_select        = ['Eval','Pre-Op', 'Post-Op', 'RTS', 'Long-Term', 'Research',
                        'Quality Assurance']
-brace_select        = ["Barefoot","B AFO-PLS","L AFO-PLS","R AFO-PLS",
-                        "B AFO-Solid","L AFO-Solid","R AFO-Solid",
-                        "B AFO-FR","L AFO-FR","R AFO-FR",
-                        "B AFO-Artic","L AFO-Artic","R AFO-Artic",
-                        "L LIFT","R LIFT","B SMO","L SMO","R SMO",
-                        "B UCBL","L UCBL","R UCBL",
-                        "KAFO","HKAFO","RGO","Parawalker","Shoes Only","Other", "Shod"]
-walkaid_select      = ['None','Posterior', 'Anterior','Canes','Crutches','Walker - Wheeled','Other']
-vstused_select      = ['no KAD','no KAD Dypstick','Foot Model no KAD',
-                       'Foot Model no KAD w/FootNotFlat','Foot Model Dypstick no KAD',
-                       'KAD','KAD Dypstick','Foot Model with KAD',
+brace_select        = ['Barefoot', 'B AFO-PLS', 'L AFO-PLS', 'R AFO-PLS',
+                        'B AFO-Solid', 'L AFO-Solid', 'R AFO-Solid',
+                        'B AFO-FR', 'L AFO-FR', 'R AFO-FR',
+                        'B AFO-Artic', 'L AFO-Artic', 'R AFO-Artic',
+                        'L LIFT', 'R LIFT', 'B SMO', 'L SMO','R SMO',
+                        'B UCBL', 'L UCBL', 'R UCBL',
+                        'KAFO', 'HKAFO', 'RGO', 'Parawalker',
+                        'Shoes Only', 'Other', 'Shod']
+walkaid_select      = ['None', 'Posterior', 'Anterior', 'Canes', 'Crutches',
+                       'Walker - Wheeled', 'Hand-Held', 'Other']
+vstused_select      = ['no KAD', 'no KAD Dypstick', 'Foot Model no KAD',
+                       'Foot Model no KAD w/FootNotFlat', 'Foot Model Dypstick no KAD',
+                       'KAD', 'KAD Dypstick', 'Foot Model with KAD',
                        'Foot Model Dypstick with KAD', 'new no KAD & old KAD']
 
 # Initialize values with memory
@@ -85,7 +87,7 @@ class Motion_Report(tk.Tk):
         
         tk.Tk.__init__(self)
         # Specify title of Form
-        tk.Tk.wm_title(self, "Shriners Motion Lab Report Generator")
+        tk.Tk.wm_title(self, 'Shriners Motion Lab Report Generator')
         
         #Create a dictionary of frames/forms
         self.frames = {} 
@@ -93,7 +95,7 @@ class Motion_Report(tk.Tk):
         #Specify all the form names
         for F in frames:
             frame = F(self)
-            frame.grid(row=0, column=0, sticky="nsew")
+            frame.grid(row=0, column=0, sticky='nsew')
             self.frames[F] = frame
     
         #Initialize the first form
