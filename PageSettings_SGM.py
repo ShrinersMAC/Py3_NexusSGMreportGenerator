@@ -296,14 +296,14 @@ class FootKinematicsPageSettings:
         self.LeftFootAngleNames = ['LeftHindFootTilt','LeftHindFootObliquity','LeftForeFootTilt',
                             'LeftDorsiPlanFlex', '', 'LeftFootProgression',  
                             'LeftAnkleComplexDorsiPlanFlex','LeftAnkleComplexValgVar','LeftAnkleComplexRotation', 
-                            'LeftMidFootDorsiPlanFlex','LeftMidFootSupPron','LeftMidFootAbAdduct',
-                            'LeftHalDorsiPlanFlex', 'LeftSupination', 'LeftHalValgVar']
+                            'LeftMidFootDorsiPlanFlexROT','LeftMidFootSupPronROT','LeftMidFootAbAdductROT',
+                            'LeftHalDorsiPlanFlex', 'LeftSupinationROT', 'LeftHalValgVar']
 
         self.RightFootAngleNames = ['RightHindFootTilt','RightHindFootObliquity','RightForeFootTilt',
                             'RightDorsiPlanFlex', '', 'RightFootProgression',  
                             'RightAnkleComplexDorsiPlanFlex','RightAnkleComplexValgVar','RightAnkleComplexRotation', 
-                            'RightMidFootDorsiPlanFlex','RightMidFootSupPron','RightMidFootAbAdduct',
-                            'RightHalDorsiPlanFlex', 'RightSupination', 'RightHalValgVar']
+                            'RightMidFootDorsiPlanFlexROT','RightMidFootSupPronROT','RightMidFootAbAdductROT',
+                            'RightHalDorsiPlanFlex', 'RightSupinationROT', 'RightHalValgVar']
 
         self.FootAngleTitles =    ['Hindfoot Tilt','Hindfoot Obliquity','Forefoot Tilt',
                               'Ankle Plantar-Dorsiflexion', '', 'Foot Progression',
